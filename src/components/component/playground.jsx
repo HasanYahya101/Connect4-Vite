@@ -93,7 +93,7 @@ const Connect4 = () => {
                 <TooltipProvider>
                     <Tooltip>
                         <TooltipTrigger>
-                            <Button className="ml-2 bg-blue-100 hover:bg-blue-300 hover:bg-opacity-40" variant="outline"
+                            <Button className="ml-2 bg-blue-100 border-none hover:bg-blue-300 hover:bg-opacity-40" variant="outline"
                                 size="icon"
                             >
                                 <CircleHelp size={24} />
