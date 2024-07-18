@@ -73,6 +73,7 @@ const Connect4 = () => {
 
         if (board.every(row => row.every(cell => cell !== EMPTY))) {
             setGameOver(true);
+            setAlertDialogOpen(true);
         }
     };
 
@@ -83,8 +84,10 @@ const Connect4 = () => {
         setGameOver(false);
     };
 
+    const [alertDialogOpen, setAlertDialogOpen] = useState(false);
+
     return (
-        <div className="flex flex-col items-center justify-center h-screen w-screen min-h-screen min-w-[100vw] bg-blue-100">
+        <div className="flex flex-col items-center justify-center h-full w-full min-h-screen min-w-[100vw] bg-blue-100">
             <div className='flex justify-center items-center self-center my-6'>
                 <span className="text-2xl font-bold">{currentPlayer === PLAYER1 ? 'Player Red' : 'Player Yellow'}'s turn</span>
                 <TooltipProvider>
@@ -134,6 +137,24 @@ const Connect4 = () => {
                     {winner ? `${winner === PLAYER1 ? 'Red' : 'Yellow'} wins!` : "It's a draw!"}
                 </div>
             )}
+            <AlertDialog open={alertDialogOpen} onDismiss={() => setAlertDialogOpen(false)}
+            >
+                <AlertDialogTrigger>
+                    {/*<button className="hidden">Trigger</button>*/}
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>Reset Game</AlertDialogTitle>
+                    </AlertDialogHeader>
+                    <AlertDialogDescription>
+                        Are you sure you want to reset the game?
+                    </AlertDialogDescription>
+                    <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction onClick={resetGame}>Reset</AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
             <div className="fixed bottom-9 right-9 flex flex-col gap-2 z-50">
                 <button className="bg-green-500 hover:bg-green-600 text-white rounded-full p-3 shadow-lg transition-all duration-300 flex items-center group hover:pr-6"
                     onMouseEnter={() => setNewHover(true)}
