@@ -87,11 +87,23 @@ const Connect4 = () => {
         <div className="flex flex-col items-center justify-center h-screen w-screen min-h-screen min-w-[100vw] bg-blue-100">
             <div className='flex justify-center items-center self-center my-6'>
                 <span className="text-2xl font-bold">{currentPlayer === PLAYER1 ? 'Player Red' : 'Player Yellow'}'s turn</span>
-                <Button className="ml-2 bg-blue-100" variant="outline" onClick={() => alert('Connect 4 is a two-player connection game in which the players first choose a color and then take turns dropping colored discs from the top into a seven-column, six-row vertically suspended grid. The pieces fall straight down, occupying the lowest available space within the column. The objective of the game is to be the first to form a horizontal, vertical, or diagonal line of four of one\'s own discs.')}
-                    size="icon"
-                >
-                    <CircleHelp size={24} />
-                </Button>
+                <TooltipProvider>
+                    <Tooltip>
+                        <TooltipTrigger>
+                            <Button className="ml-2 bg-blue-100 hover:bg-blue-300 hover:bg-opacity-40" variant="outline"
+                                size="icon"
+                            >
+                                <CircleHelp size={24} />
+                            </Button>
+                        </TooltipTrigger>
+                        <TooltipContent className='p-6'>
+                            <h1 className="text-xl mb-3 font-semibold">Connect 4</h1>
+                            <p className="text-sm max-w-md text-muted-foreground"
+                            >Connect 4 is a two-player connection game in which the players first choose a color and then take turns dropping colored discs from the top into a seven-column, six-row vertically suspended grid. The pieces fall straight down, occupying the lowest available space within the column. The objective of the game is to be the first to form a horizontal, vertical, or diagonal line of four of one\'s own discs.
+                            </p>
+                        </TooltipContent>
+                    </Tooltip>
+                </TooltipProvider>
             </div>
             <div className="bg-blue-500 p-4 rounded-lg shadow-lg">
                 {board.map((row, rowIndex) => (
