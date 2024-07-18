@@ -32,6 +32,7 @@ const Connect4 = () => {
     const [winner, setWinner] = useState(null);
     const [gameOver, setGameOver] = useState(false);
     const [newHover, setNewHover] = useState(false);
+    const [alertDialogOpen, setAlertDialogOpen] = useState(false);
 
     const dropPiece = (col) => {
         if (gameOver) return;
@@ -67,6 +68,7 @@ const Connect4 = () => {
             if (count >= 4) {
                 setWinner(currentPlayer);
                 setGameOver(true);
+                setAlertDialogOpen(true);
                 return;
             }
         }
@@ -83,8 +85,6 @@ const Connect4 = () => {
         setWinner(null);
         setGameOver(false);
     };
-
-    const [alertDialogOpen, setAlertDialogOpen] = useState(false);
 
     return (
         <div className="flex flex-col items-center justify-center h-full w-full min-h-screen min-w-[100vw] bg-blue-100">
@@ -132,28 +132,41 @@ const Connect4 = () => {
                     </div>
                 ))}
             </div>
-            {gameOver && (
+            {/*{gameOver && (
                 <div className="mt-4 text-xl font-bold">
                     {winner ? `${winner === PLAYER1 ? 'Red' : 'Yellow'} wins!` : "It's a draw!"}
                 </div>
-            )}
+            )}*/}
             <AlertDialog open={alertDialogOpen} onDismiss={() => setAlertDialogOpen(false)} onOpenChange={setAlertDialogOpen}
             >
-                <AlertDialogTrigger>
+                <AlertDialogTrigger asChild
+                >
                     <button className="hidden">Trigger</button>
                 </AlertDialogTrigger>
-                <AlertDialogContent>
+                <AlertDialogContent className='bg-blue-100'
+                >
                     <AlertDialogHeader>
                         <AlertDialogTitle>
-                            {winner ? `${winner === PLAYER1 ? 'Red' : 'Yellow'} wins!` : "It's a draw!"}
+                            {gameOver === true ?
+                                <span className="text-black">Game Over</span>
+                                :
+                                gameOver === false && currentPlayer === PLAYER1 ?
+                                    <span className="text-black">Player Red's turn</span>
+                                    : gameOver === false && currentPlayer === PLAYER2 ?
+                                        <span className="text-black">Player Yellow's turn</span>
+                                        : null
+                            }
                         </AlertDialogTitle>
                     </AlertDialogHeader>
-                    <AlertDialogDescription>
+                    <AlertDialogDescription className="text-black"
+                    >
                         Do you want to play again? All progress will be lost.
                     </AlertDialogDescription>
                     <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction onClick={resetGame}>Reset</AlertDialogAction>
+                        <AlertDialogCancel className="bg-red-500 hover:bg-red-600 text-white hover:text-white"
+                        >Cancel</AlertDialogCancel>
+                        <AlertDialogAction className="bg-green-500 hover:bg-green-600 text-white hover:text-white"
+                            onClick={resetGame}>Reset</AlertDialogAction>
                     </AlertDialogFooter>
                 </AlertDialogContent>
             </AlertDialog>
