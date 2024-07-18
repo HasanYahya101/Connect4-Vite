@@ -1,12 +1,12 @@
-# CalcWhiz (React + Vite)
+# Connect4 (React + Vite)
 
 ## Introduction
 
-This is a basic Calculator that allows for 4 basic operations (Addition, Subtraction, Multiplication and Division). It is made using Tailwind CSS and React.
+This is a Connect4 desktop game made using react (vite). It allows players to take turns dropping colored discs from the top into a seven-column, six-row vertically suspended grid. The pieces fall straight down, occupying the lowest available space within the column. The objective of the game is to be the first to form a horizontal, vertical, or diagonal line of four of one's own discs.
 
 ## UI Library
 
-Radix UI and ShadCN components were used to create the UI of the website. Moreover, Vite was used to create this React Project.
+Radix UI and ShadCN components were used to create the UI of the website. Moreover, Vite was used to create this React Project. Moreover framer-motion and lucide-react icons were also used in it.
 
 ## Deployment
 
