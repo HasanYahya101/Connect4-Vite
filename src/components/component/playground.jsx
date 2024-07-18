@@ -155,7 +155,7 @@ const Connect4 = () => {
                 >
                     <AlertDialogHeader>
                         <AlertDialogTitle>
-                            {winner && !gameOver ? `${winner === PLAYER1 ? 'Red' : 'Yellow'} wins!` : "It's a draw!"}
+                            {winner ? `${winner === PLAYER1 ? 'Red' : 'Yellow'} wins!` : "It's a draw!"}
                         </AlertDialogTitle>
                     </AlertDialogHeader>
                     <AlertDialogDescription className="text-black"
