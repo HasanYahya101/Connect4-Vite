@@ -2,6 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '../ui/button';
 import { Plus } from 'lucide-react';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const ROWS = 6;
 const COLS = 7;
@@ -70,6 +87,7 @@ const Connect4 = () => {
         <div className="flex flex-col items-center justify-center h-screen w-screen min-h-screen min-w-[100vw] bg-blue-100">
             <div className='flex justify-center items-center self-center my-6'>
                 <span className="text-2xl font-bold">{currentPlayer === PLAYER1 ? 'Player Red' : 'Player Yellow'}'s turn</span>
+
             </div>
             <div className="bg-blue-500 p-4 rounded-lg shadow-lg">
                 {board.map((row, rowIndex) => (
