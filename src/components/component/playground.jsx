@@ -137,17 +137,19 @@ const Connect4 = () => {
                     {winner ? `${winner === PLAYER1 ? 'Red' : 'Yellow'} wins!` : "It's a draw!"}
                 </div>
             )}
-            <AlertDialog open={alertDialogOpen} onDismiss={() => setAlertDialogOpen(false)}
+            <AlertDialog open={alertDialogOpen} onDismiss={() => setAlertDialogOpen(false)} onOpenChange={setAlertDialogOpen}
             >
                 <AlertDialogTrigger>
-                    {/*<button className="hidden">Trigger</button>*/}
+                    <button className="hidden">Trigger</button>
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                     <AlertDialogHeader>
-                        <AlertDialogTitle>Reset Game</AlertDialogTitle>
+                        <AlertDialogTitle>
+                            {winner ? `${winner === PLAYER1 ? 'Red' : 'Yellow'} wins!` : "It's a draw!"}
+                        </AlertDialogTitle>
                     </AlertDialogHeader>
                     <AlertDialogDescription>
-                        Are you sure you want to reset the game?
+                        Do you want to play again? All progress will be lost.
                     </AlertDialogDescription>
                     <AlertDialogFooter>
                         <AlertDialogCancel>Cancel</AlertDialogCancel>
