@@ -89,7 +89,15 @@ const Connect4 = () => {
     return (
         <div className="flex flex-col items-center justify-center h-full w-full min-h-screen min-w-[100vw] bg-blue-100">
             <div className='flex justify-center items-center self-center my-6'>
-                <span className="text-2xl font-bold">{currentPlayer === PLAYER1 ? 'Player Red' : 'Player Yellow'}'s turn</span>
+                {gameOver === true ?
+                    <span className="text-black text-2xl font-bold mb-1">Game Over</span>
+                    :
+                    gameOver === false && currentPlayer === PLAYER1 ?
+                        <span className="text-black text-2xl font-bold mb-1">Player Red's turn</span>
+                        : gameOver === false && currentPlayer === PLAYER2 ?
+                            <span className="text-black text-2xl font-bold mb-1">Player Yellow's turn</span>
+                            : null
+                }
                 <TooltipProvider>
                     <Tooltip>
                         <TooltipTrigger>
@@ -147,15 +155,7 @@ const Connect4 = () => {
                 >
                     <AlertDialogHeader>
                         <AlertDialogTitle>
-                            {gameOver === true ?
-                                <span className="text-black">Game Over</span>
-                                :
-                                gameOver === false && currentPlayer === PLAYER1 ?
-                                    <span className="text-black">Player Red's turn</span>
-                                    : gameOver === false && currentPlayer === PLAYER2 ?
-                                        <span className="text-black">Player Yellow's turn</span>
-                                        : null
-                            }
+                            {winner && !gameOver ? `${winner === PLAYER1 ? 'Red' : 'Yellow'} wins!` : "It's a draw!"}
                         </AlertDialogTitle>
                     </AlertDialogHeader>
                     <AlertDialogDescription className="text-black"
