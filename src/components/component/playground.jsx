@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '../ui/button';
-import { Plus } from 'lucide-react';
+import { CircleHelp, Plus } from 'lucide-react';
 import {
     AlertDialog,
     AlertDialogAction,
@@ -87,7 +87,11 @@ const Connect4 = () => {
         <div className="flex flex-col items-center justify-center h-screen w-screen min-h-screen min-w-[100vw] bg-blue-100">
             <div className='flex justify-center items-center self-center my-6'>
                 <span className="text-2xl font-bold">{currentPlayer === PLAYER1 ? 'Player Red' : 'Player Yellow'}'s turn</span>
-
+                <Button className="ml-2 bg-blue-100" variant="outline" onClick={() => alert('Connect 4 is a two-player connection game in which the players first choose a color and then take turns dropping colored discs from the top into a seven-column, six-row vertically suspended grid. The pieces fall straight down, occupying the lowest available space within the column. The objective of the game is to be the first to form a horizontal, vertical, or diagonal line of four of one\'s own discs.')}
+                    size="icon"
+                >
+                    <CircleHelp size={24} />
+                </Button>
             </div>
             <div className="bg-blue-500 p-4 rounded-lg shadow-lg">
                 {board.map((row, rowIndex) => (
@@ -118,7 +122,7 @@ const Connect4 = () => {
                     {winner ? `${winner === PLAYER1 ? 'Red' : 'Yellow'} wins!` : "It's a draw!"}
                 </div>
             )}
-            <div className="fixed bottom-9 right-9 flex flex-col gap-2">
+            <div className="fixed bottom-9 right-9 flex flex-col gap-2 z-50">
                 <button className="bg-green-500 hover:bg-green-600 text-white rounded-full p-3 shadow-lg transition-all duration-300 flex items-center group hover:pr-6"
                     onMouseEnter={() => setNewHover(true)}
                     onMouseLeave={() => setNewHover(false)}
