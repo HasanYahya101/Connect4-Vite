@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '../ui/button';
+import { Plus } from 'lucide-react';
 
 const ROWS = 6;
 const COLS = 7;
@@ -13,6 +14,7 @@ const Connect4 = () => {
     const [currentPlayer, setCurrentPlayer] = useState(PLAYER1);
     const [winner, setWinner] = useState(null);
     const [gameOver, setGameOver] = useState(false);
+    const [newHover, setNewHover] = useState(false);
 
     const dropPiece = (col) => {
         if (gameOver) return;
@@ -65,12 +67,9 @@ const Connect4 = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-blue-100">
-            <div className='flex justify-center items-center self-center'>
-                <h1 className="text-4xl font-bold mb-4">Connect 4</h1>
-                <div className="ml-4 flex items-center justify-center mb-2.5">
-                    {currentPlayer === PLAYER1 ? <div className="w-4 h-4 rounded-full bg-red-500 mr-2" /> : <div className="w-4 h-4 rounded-full bg-yellow-400 mr-2" />}
-                </div>
+        <div className="flex flex-col items-center justify-center h-screen w-screen min-h-screen min-w-[100vw] bg-blue-100">
+            <div className='flex justify-center items-center self-center my-6'>
+                <span className="text-2xl font-bold">{currentPlayer === PLAYER1 ? 'Player Red' : 'Player Yellow'}'s turn</span>
             </div>
             <div className="bg-blue-500 p-4 rounded-lg shadow-lg">
                 {board.map((row, rowIndex) => (
@@ -101,12 +100,20 @@ const Connect4 = () => {
                     {winner ? `${winner === PLAYER1 ? 'Red' : 'Yellow'} wins!` : "It's a draw!"}
                 </div>
             )}
-            <Button
-                className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-                onClick={resetGame}
-            >
-                New Game
-            </Button>
+            <div className="fixed bottom-9 right-9 flex flex-col gap-2">
+                <button className="bg-green-500 hover:bg-green-600 text-white rounded-full p-3 shadow-lg transition-all duration-300 flex items-center group hover:pr-6"
+                    onMouseEnter={() => setNewHover(true)}
+                    onMouseLeave={() => setNewHover(false)}
+                    onClick={resetGame}
+                >
+                    <Plus size={24} />
+                    {newHover === true ?
+                        <span className="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ml-1">
+                            New
+                        </span>
+                        : null}
+                </button>
+            </div>
         </div>
     );
 };
